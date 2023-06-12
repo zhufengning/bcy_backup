@@ -35,7 +35,11 @@ def down_res(path):
                 flag = True
         if flag:
             continue
-        res = get_auth(url)
+        try:
+            res = get_auth(url)
+        except Exception as e:
+            print(e)
+            continue
         with open("tmp", "wb") as f:
             f.write(res.content)
         sha1 = calc_sha1("tmp")
